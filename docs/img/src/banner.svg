@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#11141a"/><stop offset="1" stop-color="#1b1f27"/>
+    </linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff7a1a" stop-opacity="0.55"/><stop offset="0.2" stop-color="#ff7a1a" stop-opacity="0.08"/>
+      <stop offset="0.8" stop-color="#ff7a1a" stop-opacity="0.08"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="420" fill="url(#bg)"/>
+  <g font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="70" y="128" font-size="20" letter-spacing="4" fill="#c9d1e0">NEED FOR SPEED MOST WANTED U</text>
+    <text x="66" y="212" font-size="72" font-weight="800" fill="#ffffff">Ultrawide 21:9</text>
+    <text x="70" y="262" font-size="26" fill="#ffb347">graphic pack for the Cemu emulator</text>
+    <text x="70" y="320" font-size="19" fill="#8a93a6">2560×1080  ·  3440×1440  ·  3840×1600  ·  5120×2160</text>
+    <g transform="translate(770,95)">
+      <rect width="440" height="186" rx="8" fill="#232834"/>
+      <rect width="440" height="186" rx="8" fill="url(#side)"/>
+      <path d="M0 150 L440 150" stroke="#3a4150" stroke-width="2"/>
+      <path d="M220 150 L150 186 M220 150 L290 186" stroke="#4a5263" stroke-width="2"/>
+      <rect x="55" y="0" width="330" height="186" fill="none" stroke="#8a93a6" stroke-width="2" stroke-dasharray="9 7"/>
+      <rect width="440" height="186" rx="8" fill="none" stroke="#ff7a1a" stroke-width="3"/>
+      <text x="220" y="-14" text-anchor="middle" font-size="16" fill="#8a93a6">16:9 view</text>
+      <text x="220" y="214" text-anchor="middle" font-size="16" fill="#ff7a1a">21:9 view with this pack</text>
+    </g>
+  </g>
+</svg>

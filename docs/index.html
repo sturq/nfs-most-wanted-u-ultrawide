@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFS Most Wanted U Ultrawide 21:9 for Cemu: setup guide</title>
+<meta name="description" content="Play Need for Speed: Most Wanted U in native 21:9 on Cemu. Step-by-step install guide for the ultrawide graphic pack.">
+<meta property="og:title" content="NFS Most Wanted U Ultrawide 21:9 for Cemu">
+<meta property="og:description" content="Native 21:9 for Need for Speed: Most Wanted U in Cemu. Install guide, presets and troubleshooting.">
+<meta property="og:image" content="https://sturq.github.io/nfs-most-wanted-u-ultrawide/img/banner.png">
+<style>
+  :root {
+    --bg: #0e1015; --panel: #161a21; --panel2: #1d222b; --line: #2c323e;
+    --text: #e6e9ef; --muted: #98a1b3; --accent: #ff7a1a; --accent2: #ffb347; --ok: #6fcf97; --bad: #e07a7a;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.65 Inter, "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif; }
+  a { color: var(--accent2); }
+  img { max-width: 100%; display: block; border-radius: 12px; }
+  code, kbd { font: 0.88em/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; background: var(--panel2);
+    border: 1px solid var(--line); border-radius: 6px; padding: 0.1em 0.4em; }
+  kbd { border-bottom-width: 2px; }
+  pre { background: var(--panel2); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; overflow-x: auto; }
+  pre code { background: none; border: 0; padding: 0; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+  header { padding: 28px 0 8px; }
+  .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 15px; color: var(--muted); }
+  .top a { color: var(--muted); text-decoration: none; }
+  .top a:hover { color: var(--text); }
+  .hero { margin: 22px 0 10px; }
+  h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; margin: 26px 0 10px; letter-spacing: -0.02em; }
+  h2 { font-size: 26px; margin: 56px 0 14px; letter-spacing: -0.01em; }
+  h3 { font-size: 19px; margin: 0 0 6px; }
+  .lead { color: var(--muted); font-size: 19px; margin: 0 0 22px; }
+  .buttons { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0 8px; }
+  .btn { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+  .btn.main { background: var(--accent); color: #140a02; }
+  .btn.main:hover { background: #ff8c38; }
+  .btn.alt { border: 1px solid var(--line); color: var(--text); background: var(--panel); }
+  .btn.alt:hover { border-color: var(--muted); }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+  .need { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .need .card p { margin: 0; color: var(--muted); font-size: 15.5px; }
+  ol.steps { list-style: none; counter-reset: s; padding: 0; margin: 0; }
+  ol.steps > li { counter-increment: s; position: relative; padding: 18px 20px 18px 74px; margin: 0 0 12px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+  ol.steps > li::before { content: counter(s); position: absolute; left: 20px; top: 18px; width: 36px; height: 36px;
+    border-radius: 50%; background: var(--accent); color: #140a02; font-weight: 800; display: grid; place-items: center; }
+  ol.steps p { margin: 4px 0 0; color: var(--muted); }
+  .tip { border-left: 3px solid var(--accent2); background: var(--panel2); padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 14px 0; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .faq details { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; margin: 0 0 10px; padding: 0 18px; }
+  .faq summary { cursor: pointer; padding: 16px 0; font-weight: 700; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; float: right; color: var(--muted); }
+  .faq details[open] summary::after { content: "-"; }
+  .faq details p, .faq details ul { color: var(--muted); margin: 0 0 16px; }
+  figure { margin: 18px 0; }
+  figcaption { color: var(--muted); font-size: 14.5px; margin-top: 8px; }
+  footer { margin: 70px 0 40px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
+  @media (max-width: 560px) { ol.steps > li { padding-left: 20px; padding-top: 64px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="top">
+      <span>NFS Most Wanted U · Ultrawide</span>
+      <span><a href="#install">Install</a> · <a href="#presets">Presets</a> · <a href="#problems">Problems</a> · <a href="https://github.com/sturq/nfs-most-wanted-u-ultrawide">GitHub</a></span>
+    </div>
+  </header>
+
+  <img class="hero" src="img/banner.png" alt="Need for Speed Most Wanted U, Ultrawide 21:9 graphic pack for the Cemu emulator">
+
+  <h1>Play NFS Most Wanted U in real 21:9</h1>
+  <p class="lead">A graphic pack for the Cemu Wii U emulator. The game renders at your ultrawide resolution and the camera gets wider, so you see more road instead of black bars or a stretched picture. Setup takes about five minutes.</p>
+  <div class="buttons">
+    <a class="btn main" href="https://github.com/sturq/nfs-most-wanted-u-ultrawide/releases/latest/download/NFSMWU_Ultrawide.zip">Download NFSMWU_Ultrawide.zip</a>
+    <a class="btn alt" href="https://github.com/sturq/nfs-most-wanted-u-ultrawide">View on GitHub</a>
+  </div>
+
+  <figure>
+    <img src="img/fov.png" alt="Stock 16:9 shows black bars, a 21:9 resolution without the patch looks stretched, this pack shows more road at the same height">
+    <figcaption>Changing only the resolution stretches the picture. This pack also widens the game's camera.</figcaption>
+  </figure>
+
+  <h2 id="need">What you need</h2>
+  <div class="need">
+    <div class="card"><h3>Cemu 2.x</h3><p>Tested with Cemu 2.6 on Windows 11.</p></div>
+    <div class="card"><h3>USA game, update v32</h3><p>In Cemu's game list the Region column should say USA and the Version column 32. Other versions are not supported yet.</p></div>
+    <div class="card"><h3>An ultrawide monitor</h3><p>2560×1080, 3440×1440, 3840×1600 or 5120×2160.</p></div>
+  </div>
+
+  <h2 id="install">Install, step by step</h2>
+  <ol class="steps">
+    <li><h3>Download the pack</h3>
+      <p>Get <a href="https://github.com/sturq/nfs-most-wanted-u-ultrawide/releases/latest/download/NFSMWU_Ultrawide.zip">NFSMWU_Ultrawide.zip</a>. It contains one folder with two text files.</p></li>
+    <li><h3>Open Cemu's folder</h3>
+      <p>In Cemu, click <b>File → Open Cemu folder</b>. A file explorer window opens. Go into the <code>graphicPacks</code> folder.</p></li>
+    <li><h3>Extract the zip there</h3>
+      <p>Afterwards this file has to exist: <code>graphicPacks/NFSMWU_Ultrawide/rules.txt</code>. If you see <code>NFSMWU_Ultrawide/NFSMWU_Ultrawide/</code>, move the inner folder up one level.</p></li>
+    <li><h3>Restart Cemu</h3>
+      <p>Close Cemu completely and open it again. It only reads graphic packs when it starts.</p></li>
+    <li><h3>Turn off the old Resolution pack</h3>
+      <p>Open <b>Options → Graphic packs</b>, then <b>Need for Speed Most Wanted U → Graphics</b>. Untick <b>Resolution</b>. Both packs change the same render targets and get in each other's way.</p></li>
+    <li><h3>Turn on Ultrawide 21:9</h3>
+      <p>Tick <b>Ultrawide 21:9</b>. The preset list appears on the right. Pick the one that matches your monitor (see the table below).</p></li>
+    <li><h3>Play in fullscreen</h3>
+      <p>Start the game and press <kbd>Alt</kbd> + <kbd>Enter</kbd> for fullscreen.</p></li>
+  </ol>
+
+  <div class="tip">Change presets only while the game is closed, then start it again.</div>
+
+  <h2 id="presets">Which preset?</h2>
+  <table>
+    <tr><th>Your monitor</th><th>Preset</th><th>$aspect</th></tr>
+    <tr><td>2560×1080 (most 29" and 34" ultrawides)</td><td>2560x1080 (21:9)</td><td>2.3703704</td></tr>
+    <tr><td>3440×1440 (34" WQHD ultrawide)</td><td>3440x1440 (21:9)</td><td>2.3888889</td></tr>
+    <tr><td>3840×1600 (37.5" and 38")</td><td>3840x1600 (24:10)</td><td>2.4</td></tr>
+    <tr><td>5120×2160 (40" 5K2K)</td><td>5120x2160 (21:9)</td><td>2.3703704</td></tr>
+  </table>
+  <p style="color:var(--muted)">2560×1080 is tested. The others use the same math but have not been checked on real monitors yet.</p>
+
+  <h2 id="check">Check that it worked</h2>
+  <p>Start the game once, close Cemu and open <code>log.txt</code> in the Cemu folder. You should find these two lines:</p>
+<pre><code>Loaded module 'hawaii' with checksum 0xfc370b5b
+Applying patch group 'NFSMWU_Ultrawide'</code></pre>
+  <p>The first one means you have the right game version, the second one that the patch is active.</p>
+
+  <h2 id="problems">If something looks wrong</h2>
+  <div class="faq">
+    <details><summary>The pack is not in the list</summary>
+      <p>Check the folder path from step 3 and restart Cemu. The pack only appears for the USA release (title ID <code>0005000010128800</code>). European and Japanese copies do not list it.</p></details>
+    <details><summary>The picture is stretched</summary>
+      <p>The resolution part works, the patch does not. Look for <code>Applying patch group 'NFSMWU_Ultrawide'</code> in <code>log.txt</code>. If it is missing, your game is not on update v32. Install the update through <b>File → Install game title, update or DLC</b>.</p></details>
+    <details><summary>Black bars on the sides</summary>
+      <p>The preset does not match your monitor, or Cemu is not in fullscreen. Pick the preset with your exact resolution and press <kbd>Alt</kbd> + <kbd>Enter</kbd>.</p></details>
+    <details><summary>The picture looks blurry</summary>
+      <p>You probably picked a preset smaller than your monitor, for example 2560x1080 on a 3440×1440 screen.</p></details>
+    <details><summary>How do I go back to normal?</summary>
+      <p>Untick <b>Ultrawide 21:9</b> and tick <b>Resolution</b> again. To remove it completely, delete the <code>NFSMWU_Ultrawide</code> folder.</p></details>
+  </div>
+
+  <h2 id="how">How it works</h2>
+  <figure><img src="img/how-it-works.png" alt="The game file is scanned for 16:9 constants, 76 are patched to the target aspect ratio, Cemu renders at 21:9"></figure>
+  <p>The game keeps its 16:9 ratio as the number <code>1.7777778</code> in its executable. 146 copies exist, 76 of them are actually loaded by the game code. The pack replaces those 76 with your monitor's ratio and renders at your resolution. Nothing in your game files is changed: Cemu applies the patch in memory while the game runs.</p>
+
+  <h2 id="other">Make one for another game</h2>
+  <p>The two Python tools that found this patch are in the repository. One pulls the executable out of a <code>.wua</code> dump, the other lists the 16:9 constants and writes a <code>patches.txt</code>. The <a href="https://github.com/sturq/nfs-most-wanted-u-ultrawide#use-it-for-other-games">README</a> has the commands.</p>
+
+  <footer>
+    Texture rules from the Resolution pack by getdls in <a href="https://github.com/cemu-project/cemu_graphic_packs">cemu_graphic_packs</a>. Released under <a href="https://github.com/sturq/nfs-most-wanted-u-ultrawide/blob/main/LICENSE">CC0 1.0</a>.<br>
+    No game files included. Need for Speed is a trademark of Electronic Arts. Not affiliated with Electronic Arts, Nintendo or the Cemu team.
+  </footer>
+</div>
+</body>
+</html>
